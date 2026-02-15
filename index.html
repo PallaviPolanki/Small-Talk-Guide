@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business English Small Talk Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .past { color: #dc3545; }
+        .present { color: #28a745; }
+        .future { color: #007bff; }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            padding: 0 20px;
+            overflow-x: auto;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab:hover {
+            color: #495057;
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .topic-section {
+            display: none;
+        }
+        
+        .topic-section.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question-block {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .question {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .follow-up {
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .answers {
+            margin-top: 15px;
+        }
+        
+        .answer-toggle {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-bottom: 10px;
+        }
+        
+        .answer-toggle:hover {
+            background: #5568d3;
+        }
+        
+        .answer-content {
+            display: none;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .answer-content.show {
+            display: block;
+        }
+        
+        .answer-option {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+        
+        .answer-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .vocab-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e7f3ff;
+            border-radius: 10px;
+        }
+        
+        .vocab-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .vocab-item {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .vocab-term {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .tabs {
+                padding: 0 10px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .question {
+                font-size: 16px;
+            }
+            
+            .follow-up {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function showTopic(topicId) {
+            const sections = document.querySelectorAll('.topic-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(topicId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function toggleAnswers(button) {
+            const answerContent = button.nextElementSibling;
+            if (answerContent.classList.contains('show')) {
+                answerContent.classList.remove('show');
+                button.textContent = 'Show Sample Answers';
+            } else {
+                answerContent.classList.add('show');
+                button.textContent = 'Hide Sample Answers';
+            }
+        }
+    </script>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Business English Small Talk Practice</h1>
+            <p>Build confidence in everyday conversations</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box" style="background: #dc3545;"></div>
+                <span>Past Tense (Red)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: #28a745;"></div>
+                <span>Present Tense (Green)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: #007bff;"></div>
+                <span>Future Tense (Blue)</span>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTopic('daily')">Daily Routine</button>
+            <button class="tab" onclick="showTopic('hobbies')">Hobbies</button>
+            <button class="tab" onclick="showTopic('weather')">Weather</button>
+            <button class="tab" onclick="showTopic('family')">Family</button>
+            <button class="tab" onclick="showTopic('activities')">Recent Activities</button>
+            <button class="tab" onclick="showTopic('news')">Current Events</button>
+            <button class="tab" onclick="showTopic('vocab-topic')">Vocabulary by Topic</button>
+            <button class="tab" onclick="showTopic('vocab-function')">Vocabulary by Function</button>
+        </div>
+        
+        <div class="content">
+            <!-- Daily Routine -->
+            <div id="daily" class="topic-section active">
+                <div class="question-block">
+                    <div class="question">
+                        <span class="past">How was your day?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="past">Did you have a busy day?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Positive (detailed):</div>
+                            <span class="past">It was great, thanks! I had several meetings, but they went really well. I finished an important project.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Positive (short):</div>
+                            <span class="past">Good, thanks! Pretty busy, but productive.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Neutral:</div>
+                            <span class="past">It was okay. Not too busy, just a normal day.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Busy:</div>
+                            <span class="past">Very busy! I had back-to-back meetings all morning and lots of emails to reply to.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="present">Do you work from home?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="present">How many days a week do you work from home?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (with frequency):</div>
+                            <span class="present">Yes, I work from home three days a week. I come to the office on Tuesdays and Thursdays.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (fully remote):</div>
+                            <span class="present">Yes, I work from home full-time. My company is fully remote.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No:</div>
+                            <span class="present">No, I go to the office every day. I prefer working there because I like the social interaction.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Sometimes:</div>
+                            <span class="present">Sometimes. It depends on my schedule. Usually about two days a week.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="future">What are you doing at the weekend?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="future">Are you going away this weekend?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Plans (specific):</div>
+                            <span class="future">I'm going to visit my parents. We're planning to have lunch together on Sunday.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Plans (relaxing):</div>
+                            <span class="future">Nothing special. I'm just going to relax at home and catch up on some reading.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Trip:</div>
+                            <span class="future">Yes! I'm going to the mountains for a short break. I'm really looking forward to it.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No plans:</div>
+                            <span class="future">I'm not sure yet. Maybe I'll meet some friends or do some shopping.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hobbies -->
+            <div id="hobbies" class="topic-section">
+                <div class="question-block">
+                    <div class="question">
+                        <span class="present">What do you like to do in your free time?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="present">Do you have any hobbies?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Active hobbies:</div>
+                            <span class="present">I really enjoy playing tennis and going to the gym. I try to stay active.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Creative hobbies:</div>
+                            <span class="present">I love photography. I take my camera everywhere and enjoy capturing moments.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Relaxing activities:</div>
+                            <span class="present">I like reading and watching movies. It helps me relax after work.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Multiple interests:</div>
+                            <span class="present">I have a few hobbies. I play guitar, cook, and I'm learning a new language.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="past">Did you do anything interesting last weekend?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="past">How did you spend your weekend?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (detailed):</div>
+                            <span class="past">Yes! I went hiking with some friends. The weather was beautiful and we had a great time.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (short):</div>
+                            <span class="past">I tried a new restaurant downtown. The food was amazing!</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Relaxing weekend:</div>
+                            <span class="past">Not really. I just stayed home and relaxed. I needed the rest.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Mixed activities:</div>
+                            <span class="past">I did some gardening on Saturday and watched a movie on Sunday. It was nice and peaceful.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="future">Are you planning to start any new hobbies?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="future">What would you like to learn?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (specific):</div>
+                            <span class="future">Yes, I'm thinking about learning to play the piano. I'm going to look for a teacher soon.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (considering):</div>
+                            <span class="future">Maybe. I'd like to try yoga or meditation. I hear it's good for stress.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Not sure:</div>
+                            <span class="future">I'm not sure yet. I'd like to find something creative, but I haven't decided what.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No:</div>
+                            <span class="future">Not at the moment. I'm happy with my current hobbies. I don't have much extra time.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weather -->
+            <div id="weather" class="topic-section">
+                <div class="question-block">
+                    <div class="question">
+                        <span class="present">How's the weather today?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="present">Is it nice outside?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Good weather:</div>
+                            <span class="present">It's beautiful! The sun is shining and it's quite warm for this time of year.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Bad weather:</div>
+                            <span class="present">Not great. It's raining and quite cold. I wish it would stop!</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Mixed:</div>
+                            <span class="present">It's okay. A bit cloudy, but at least it's not raining.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Typical:</div>
+                            <span class="present">Pretty normal for this season. Cool and a bit windy.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="past">Did you have good weather this weekend?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="past">Was it sunny?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes:</div>
+                            <span class="past">Yes, it was lovely! We had sunshine all weekend. Perfect for being outside.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No:</div>
+                            <span class="past">No, unfortunately. It rained both days, so I stayed indoors.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Mixed:</div>
+                            <span class="past">Saturday was nice, but Sunday was rainy. We went out on Saturday though.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Didn't notice:</div>
+                            <span class="past">I'm not sure, to be honest. I was busy working from home, so I didn't pay much attention.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="future">What's the weather forecast for this week?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="future">Is it going to rain?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Good forecast:</div>
+                            <span class="future">It's going to be sunny all week! Perfect weather for outdoor activities.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Bad forecast:</div>
+                            <span class="future">Not good, I'm afraid. It's going to rain for the next few days.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Uncertain:</div>
+                            <span class="future">I'm not sure. I haven't checked the forecast yet. I should probably do that!</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Changing:</div>
+                            <span class="future">It's going to be mixed. Rain at the beginning of the week, but it will improve by Friday.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Family -->
+            <div id="family" class="topic-section">
+                <div class="question-block">
+                    <div class="question">
+                        <span class="present">Do you have any children?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="present">How old are they?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (with details):</div>
+                            <span class="present">Yes, I have two children. My daughter is seven and my son is four.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (grown up):</div>
+                            <span class="present">Yes, I have one son. He's twenty-five now and lives in another city.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No:</div>
+                            <span class="present">No, I don't have any children yet. Maybe in the future!</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No (with pets):</div>
+                            <span class="present">No children, but I have a dog. He's like my child!</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="past">Did you see your family recently?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="past">When did you last visit them?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (recent):</div>
+                            <span class="past">Yes, I saw them last weekend. We had a nice dinner together.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (special occasion):</div>
+                            <span class="past">Yes, we all got together for my mother's birthday last month. It was wonderful.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No (long time):</div>
+                            <span class="past">No, not recently. I haven't seen them for a few months. They live quite far away.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Regular contact:</div>
+                            <span class="past">Yes, I saw them yesterday. My parents live nearby, so I visit them often.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="future">Are you planning to visit your family soon?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="future">Will you see them for the holidays?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (specific plans):</div>
+                            <span class="future">Yes, I'm going to visit them next weekend. I'm really looking forward to it.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (holiday plans):</div>
+                            <span class="future">Yes, we're all going to get together for Christmas. It's going to be nice.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Not sure:</div>
+                            <span class="future">I'm not sure yet. It depends on my work schedule. I hope I can visit soon.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">No (they're visiting):</div>
+                            <span class="future">Actually, they're going to visit me next month! I'm preparing everything.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activities -->
+            <div id="activities" class="topic-section">
+                <div class="question-block">
+                    <div class="question">
+                        <span class="past">What did you do yesterday?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="past">Did you do anything special?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Work day:</div>
+                            <span class="past">I worked all day. I had a lot of meetings and finished some reports.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Special activity:</div>
+                            <span class="past">Yes, actually! I went to a concert in the evening. It was fantastic!</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Regular day:</div>
+                            <span class="past">Nothing special. Just a normal day. I worked, then went home and relaxed.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Social activity:</div>
+                            <span class="past">I met a friend for coffee after work. We had a good chat.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="present">Are you working on any interesting projects?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="present">What do you do at work?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (enthusiastic):</div>
+                            <span class="present">Yes! I'm working on a new marketing campaign. It's really exciting and creative.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Yes (challenging):</div>
+                            <span class="present">I'm working on a big presentation for our clients. It's challenging but interesting.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Routine work:</div>
+                            <span class="present">Not at the moment. Just doing my regular tasks. Nothing too exciting right now.</span>
+                        </div>
+                        <div class="answer-option">
+                            <div class="answer-label">Multiple projects:</div>
+                            <span class="present">I'm juggling a few projects at once. It's busy, but I like having variety in my work.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-block">
+                    <div class="question">
+                        <span class="future">What are you planning to do next month?</span>
+                    </div>
+                    <div class="follow-up">
+                        <span class="future">Do you have any trips planned?</span>
+                    </div>
+                    <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                    <div class="answer-content">
+                        <div class="answer-option">
+                            <div class="answer-label">Travel plans:</div>
+                            <span class="future">Yes! I'm going to take a week off and travel to Spain. I can't wait!</span></div>
+                    <div class="answer-option">
+                        <div class="answer-label">Special event:</div>
+                        <span class="future">I'm going to attend a friend's wedding. It's going to be a big celebration.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">Work focus:</div>
+                        <span class="future">Nothing special planned. I'll be working on a big deadline, so it will be quite busy.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">No concrete plans:</div>
+                        <span class="future">I haven't made any plans yet. Maybe I'll organize something with friends.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Current Events & News -->
+        <div id="news" class="topic-section">
+            <div class="question-block">
+                <div class="question">
+                    <span class="past">Did you hear about the news today?</span>
+                </div>
+                <div class="follow-up">
+                    <span class="past">Did you read anything interesting in the news?</span>
+                </div>
+                <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                <div class="answer-content">
+                    <div class="answer-option">
+                        <div class="answer-label">Yes (interested):</div>
+                        <span class="past">Yes, I read about the new technology announcement. It was really interesting!</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">Yes (local news):</div>
+                        <span class="past">Yes, I saw something about the new shopping center opening downtown. It looks impressive.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">No time:</div>
+                        <span class="past">No, I didn't have time this morning. I was too busy getting ready for work.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">Not yet:</div>
+                        <span class="past">Not yet. I usually check the news during my lunch break.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-block">
+                <div class="question">
+                    <span class="present">Do you follow the news regularly?</span>
+                </div>
+                <div class="follow-up">
+                    <span class="present">How do you stay informed?</span>
+                </div>
+                <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                <div class="answer-content">
+                    <div class="answer-option">
+                        <div class="answer-label">Yes (regular):</div>
+                        <span class="present">Yes, I read the news every morning with my coffee. I like to stay informed.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">Yes (specific sources):</div>
+                        <span class="present">I follow a few news websites and listen to podcasts during my commute.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">Sometimes:</div>
+                        <span class="present">Not every day, but I try to keep up with major stories. I check the headlines online.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">No:</div>
+                        <span class="present">Not really. I find the news too negative. I prefer to focus on other things.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-block">
+                <div class="question">
+                    <span class="future">Are you going to watch the big event this weekend?</span>
+                </div>
+                <div class="follow-up">
+                    <span class="future">Will you follow the election results?</span>
+                </div>
+                <button class="answer-toggle" onclick="toggleAnswers(this)">Show Sample Answers</button>
+                <div class="answer-content">
+                    <div class="answer-option">
+                        <div class="answer-label">Yes (excited):</div>
+                        <span class="future">Yes, definitely! I'm going to watch it with friends. It's going to be exciting!</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">Yes (interested):</div>
+                        <span class="future">Yes, I'm planning to follow the updates. I'm curious about the outcome.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">Maybe:</div>
+                        <span class="future">I might check the highlights. I'm not sure if I'll watch the whole thing.</span>
+                    </div>
+                    <div class="answer-option">
+                        <div class="answer-label">No:</div>
+                        <span class="future">Probably not. I'm not very interested in it. I'll just read about it later.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vocabulary by Topic -->
+        <div id="vocab-topic" class="topic-section">
+            <div class="vocab-section">
+                <h3>Daily Routine & Work</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">back-to-back meetings</span> - meetings one after another with no break</div>
+                    <div class="vocab-item"><span class="vocab-term">productive</span> - achieving a lot; getting things done</div>
+                    <div class="vocab-item"><span class="vocab-term">to catch up on</span> - to do something you haven't had time to do</div>
+                    <div class="vocab-item"><span class="vocab-term">work from home</span> - working from your house instead of the office</div>
+                    <div class="vocab-item"><span class="vocab-term">full-time</span> - working the complete work week</div>
+                    <div class="vocab-item"><span class="vocab-term">social interaction</span> - talking and spending time with other people</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Hobbies & Interests</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">free time</span> - time when you're not working</div>
+                    <div class="vocab-item"><span class="vocab-term">to stay active</span> - to exercise regularly</div>
+                    <div class="vocab-item"><span class="vocab-term">to capture moments</span> - to take photos of special times</div>
+                    <div class="vocab-item"><span class="vocab-term">to relax</span> - to rest and reduce stress</div>
+                    <div class="vocab-item"><span class="vocab-term">to look forward to</span> - to feel excited about something in the future</div>
+                    <div class="vocab-item"><span class="vocab-term">peaceful</span> - quiet and calm</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Weather</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">forecast</span> - a prediction of future weather</div>
+                    <div class="vocab-item"><span class="vocab-term">the sun is shining</span> - it's sunny</div>
+                    <div class="vocab-item"><span class="vocab-term">cloudy</span> - with clouds in the sky</div>
+                    <div class="vocab-item"><span class="vocab-term">windy</span> - with strong wind</div>
+                    <div class="vocab-item"><span class="vocab-term">for this time of year</span> - compared to what's normal for this season</div>
+                    <div class="vocab-item"><span class="vocab-term">to improve</span> - to get better</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Family</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">grown up</span> - adult; no longer a child</div>
+                    <div class="vocab-item"><span class="vocab-term">recently</span> - in the near past</div>
+                    <div class="vocab-item"><span class="vocab-term">to get together</span> - to meet as a group</div>
+                    <div class="vocab-item"><span class="vocab-term">quite far away</span> - a long distance</div>
+                    <div class="vocab-item"><span class="vocab-term">nearby</span> - close; not far</div>
+                    <div class="vocab-item"><span class="vocab-term">it depends on</span> - conditional; based on something else</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Recent Activities</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">to have a good chat</span> - to have a nice conversation</div>
+                    <div class="vocab-item"><span class="vocab-term">to juggle</span> - to manage multiple things at the same time</div>
+                    <div class="vocab-item"><span class="vocab-term">variety</span> - different types of things</div>
+                    <div class="vocab-item"><span class="vocab-term">deadline</span> - the time by which something must be finished</div>
+                    <div class="vocab-item"><span class="vocab-term">to attend</span> - to go to (an event)</div>
+                    <div class="vocab-item"><span class="vocab-term">can't wait</span> - very excited about something</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Current Events & News</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">to stay informed</span> - to keep up with what's happening</div>
+                    <div class="vocab-item"><span class="vocab-term">headlines</span> - the titles of news stories</div>
+                    <div class="vocab-item"><span class="vocab-term">major stories</span> - important news</div>
+                    <div class="vocab-item"><span class="vocab-term">to keep up with</span> - to stay updated about</div>
+                    <div class="vocab-item"><span class="vocab-term">commute</span> - the journey to and from work</div>
+                    <div class="vocab-item"><span class="vocab-term">outcome</span> - the result; what happens</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vocabulary by Function -->
+        <div id="vocab-function" class="topic-section">
+            <div class="vocab-section">
+                <h3>Time Expressions</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term past">PAST:</span> yesterday, last weekend, last week, recently, a few days ago</div>
+                    <div class="vocab-item"><span class="vocab-term present">PRESENT:</span> today, right now, at the moment, these days, currently, nowadays</div>
+                    <div class="vocab-item"><span class="vocab-term future">FUTURE:</span> tomorrow, next weekend, next week, soon, in a few days, later</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Frequency Adverbs</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">always</span> (100%) - every time</div>
+                    <div class="vocab-item"><span class="vocab-term">usually</span> (80-90%) - most of the time</div>
+                    <div class="vocab-item"><span class="vocab-term">often</span> (60-70%) - many times</div>
+                    <div class="vocab-item"><span class="vocab-term">sometimes</span> (40-50%) - not always, not never</div>
+                    <div class="vocab-item"><span class="vocab-term">rarely</span> (10%) - not very often</div>
+                    <div class="vocab-item"><span class="vocab-term">never</span> (0%) - not at any time</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Connecting Words & Phrases</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">but</span> - shows contrast</div>
+                    <div class="vocab-item"><span class="vocab-term">so</span> - shows result</div>
+                    <div class="vocab-item"><span class="vocab-term">because</span> - gives a reason</div>
+                    <div class="vocab-item"><span class="vocab-term">although</span> - shows contrast</div>
+                    <div class="vocab-item"><span class="vocab-term">actually</span> - introduces surprising info</div>
+                    <div class="vocab-item"><span class="vocab-term">unfortunately</span> - introduces bad news</div>
+                    <div class="vocab-item"><span class="vocab-term">luckily</span> - introduces good news</div>
+                    <div class="vocab-item"><span class="vocab-term">by the way</span> - introduces a new topic</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Opinion & Reaction Phrases</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">I think / I believe</span> - expressing opinion</div>
+                    <div class="vocab-item"><span class="vocab-term">In my opinion</span> - formal opinion</div>
+                    <div class="vocab-item"><span class="vocab-term">That's interesting!</span> - positive reaction</div>
+                    <div class="vocab-item"><span class="vocab-term">Really?</span> - showing surprise</div>
+                    <div class="vocab-item"><span class="vocab-term">That sounds great!</span> - enthusiastic response</div>
+                    <div class="vocab-item"><span class="vocab-term">I'm sorry to hear that</span> - showing sympathy</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Conversation Extenders</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">Tell me more about that</span> - asks for details</div>
+                    <div class="vocab-item"><span class="vocab-term">What happened next?</span> - continues the story</div>
+                    <div class="vocab-item"><span class="vocab-term">How did that go?</span> - asks about the result</div>
+                    <div class="vocab-item"><span class="vocab-term">What did you think?</span> - asks for opinion</div>
+                    <div class="vocab-item"><span class="vocab-term">Why is that?</span> - asks for explanation</div>
+                </div>
+            </div>
+            
+            <div class="vocab-section">
+                <h3>Softening & Polite Phrases</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><span class="vocab-term">I'm not sure, but...</span> - shows uncertainty</div>
+                    <div class="vocab-item"><span class="vocab-term">maybe / perhaps</span> - suggests possibility</div>
+                    <div class="vocab-item"><span class="vocab-term">quite / pretty</span> - moderate adjectives</div>
+                    <div class="vocab-item"><span class="vocab-term">a bit / a little</span> - reduces intensity</div>
+                    <div class="vocab-item"><span class="vocab-term">to be honest</span> - introduces honest opinion</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
